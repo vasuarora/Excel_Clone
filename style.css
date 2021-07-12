@@ -48,6 +48,7 @@ body {
   width: 20%;
   display: flex;
   justify-content: center;
+  background-color: white;
   border: 1px solid;
   align-items: center;
 }
@@ -58,13 +59,12 @@ body {
   height: 100%;
   border: 1px solid;
   outline: none;
-
 }
 
 .grid {
   height: 76%;
   overflow: auto;
-  position:relative;
+  position: relative;
 }
 
 .sheets-section {
@@ -76,16 +76,17 @@ body {
   height: 30px;
   width: 30px;
   background-color: gray;
-  position:fixed;
-  top:20vh;
-  left:0;
+  position: fixed;
+  top: 20vh;
+  left: 0;
 }
 
 .row-number-section {
   display: inline-block;
-  position:fixed;
-  top:calc(20vh + 30px);
-  left:0;
+  position: fixed;
+  top: calc(20vh + 30px);
+  left: 0;
+  z-index: -10;
 }
 
 .row-number {
@@ -107,6 +108,7 @@ body {
   top: 20vh;
   left: 30px;
   display: flex;
+  z-index: -10;
 }
 
 .column-tag {
@@ -122,25 +124,26 @@ body {
   color: white;
 }
 
-.cell-section{
-  height:calc(76vh - 30px);
-  width:calc(100vw - 30px);
+.cell-section {
+  height: calc(76vh - 30px);
+  width: calc(100vw - 30px);
   position: absolute;
-  top:30px;
-  left:30px;
+  top: 30px;
+  left: 30px;
   overflow: auto;
 }
 
+
 .cell{
   width: 80px;
-  height:30px;
-  border:1px solid;
+  height: 30px;
+  border: 1px solid;
   flex-shrink: 0;
-  outline:none;
+  outline: none;
 }
 
 .cell-selected{
-  border: 2px solid blue;
+  border: 2px solid rgb(60, 60, 218);
 }
 
 .row{

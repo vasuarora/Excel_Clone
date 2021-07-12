@@ -2,7 +2,17 @@ let rowNumberSection = document.querySelector(".row-number-section");
 
 let formulaBarSelectedCellArea = document.querySelector(".selected-cell-div");
 
+let cellSection = document.querySelector(".cell-section");
+
+let columnTagsSection = document.querySelector(".column-tag-section");
+
 let lastCell;
+
+cellSection.addEventListener("scroll",function(e){
+  rowNumberSection.style.transform=`translateY(-${e.currentTarget.scrollTop}px)`;                  //this will give us scroll pixels and acc to that we will move our row
+
+  columnTagsSection.style.transform=`translateX(-${e.currentTarget.scrollLeft}px)`;                //this will give us scroll pixels and acc to that we will move our column
+})
 
 for(let i = 1;i<=100;i++){
     let div = document.createElement("div")
@@ -11,7 +21,6 @@ for(let i = 1;i<=100;i++){
     rowNumberSection.append(div)
 }
 
-let columnTagsSection = document.querySelector(".column-tag-section")
 
 for(let i = 0;i<26;i++){
 
@@ -24,8 +33,6 @@ for(let i = 0;i<26;i++){
     div.classList.add("column-tag")
     columnTagsSection.append(div)
 }
-
-let cellSection = document.querySelector(".cell-section")
 
 for (let i = 1; i <= 100; i++) {
     let rowDiv = document.createElement("div");
@@ -47,6 +54,8 @@ for (let i = 1; i <= 100; i++) {
       let cellDiv = document.createElement("div");
   
       cellDiv.classList.add("cell");
+
+      cellDiv.contentEditable = true
   
       cellDiv.setAttribute("data-address", cellAddress);
 
