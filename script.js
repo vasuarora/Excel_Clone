@@ -8,6 +8,8 @@ let columnTagsSection = document.querySelector(".column-tag-section");
 
 let lastCell;
 
+let dataObj={}
+
 cellSection.addEventListener("scroll",function(e){
   rowNumberSection.style.transform=`translateY(-${e.currentTarget.scrollTop}px)`;                  //this will give us scroll pixels and acc to that we will move our row
 
@@ -20,7 +22,6 @@ for(let i = 1;i<=100;i++){
     div.classList.add("row-number")
     rowNumberSection.append(div)
 }
-
 
 for(let i = 0;i<26;i++){
 
@@ -50,8 +51,24 @@ for (let i = 1; i <= 100; i++) {
       let reqAlphabet = String.fromCharCode(asciiCode);
   
       let cellAddress = reqAlphabet + i;
+
+      dataObj[cellAddress]={
+        value:undefined,
+        formula:undefined,
+        upstream:[],
+        downstream:[], 
+      };
   
       let cellDiv = document.createElement("div");
+
+      cellDiv.addEventListener("input",function(e){
+        let currCellAddress=e.currentTarget.getAttribute("data-address");
+
+        let currCellObj=dataObj[currCellAddress];
+
+        currCellObj.value=e.currentTarget.innerText;
+        console.log(currCellObj);
+      });
   
       cellDiv.classList.add("cell");
 
