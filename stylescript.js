@@ -3,6 +3,10 @@ let body=document.querySelector("body");
 
 let allColorOptions = document.querySelectorAll(".color-section span");
 
+let menuBarOptions=document.querySelectorAll(".menu-bar-section");
+
+let fileOptions=menuBarOptions[0];
+
 let leftAlign = allAlignmentOptions[0];
 let centerAlign = allAlignmentOptions[1];
 let rightAlign = allAlignmentOptions[2];
@@ -95,3 +99,31 @@ fontColorPicker.addEventListener("click", function () {
         }
     });
 });
+
+fileOptions.addEventListener("click",function(e){
+    let isOpen=fileOptions.getAttribute("data-open");
+
+    if(isOpen=="true"){
+        fileOptions.setAttribute("data-open","false");
+        document.querySelector(".file-drop-down").remove();
+    }
+
+    else{
+        fileOptions.setAttribute("data-open","true");
+        let dropDown=document.createElement("div");
+        dropDown.innerHTML="<p>Save</p><p>Clear</p>";
+
+        let allOptions=dropDown.querySelectorAll("p");
+
+        allOptions[0].addEventListener("click",function(e){
+            localStorage.setItem("sheet",JSON.stringify(dataObj));
+        })
+
+        allOptions[1].addEventListener("click",function(e){
+            localStorage.setItem("sheet","");
+        })
+
+        dropDown.classList.add("file-drop-down");
+        fileOptions.append(dropDown);
+    }
+})

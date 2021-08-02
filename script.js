@@ -193,6 +193,21 @@ for (let i = 1; i <= 100; i++) {
     cellSection.append(rowDiv)
   }
 
+  if(localStorage.getItem("sheet")){
+    dataObj=JSON.parse(localStorage.getItem("sheet"));
+
+    for(let x in dataObj){
+      let cell=document.querySelector(`[data-address='${x}']`)
+      if(dataObj[x].value){
+        cell.innerText=dataObj[x].value;
+
+        cell.style.textAlign=dataObj[x].align;
+        cell.style.color=dataObj[x].color;
+        cell.style.backgroundColor=dataObj[x].bgColor;
+      }
+    }
+}
+
   function removeFromDownStream(parentCell,childCell){
     //fetch parent's cell downstream
 

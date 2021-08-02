@@ -31,6 +31,7 @@ body {
 .menu-bar-section div {
   margin-left: 20px;
   color: black;
+  cursor: pointer;
 }
 
 .menu-options-section {
@@ -41,6 +42,7 @@ body {
 
 .material-icons{
   font-size: 1.7rem!important;
+  cursor: default;
 }
 
 .menu-options-section div{
@@ -180,4 +182,13 @@ body {
 
 .row{
   display: flex;
+}
+
+.file-drop-down{
+  background-color: white;
+  position: absolute!important;
+  top: 60px;
+  left: -3px;
+  text-align: center;
+  width: 3rem;
 }
