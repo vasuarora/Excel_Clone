@@ -14,14 +14,11 @@ let dataObj={};
 
 formulaInput.addEventListener("keydown", function (e) {
   if (e.key == "Enter") {
-    console.log("now evaluating formula");
 
     let typedFormula = e.currentTarget.value;
     console.log(typedFormula);
 
     if (!lastCell) return;
-
-    console.log("not returned");
 
     let selectedCellAdd = lastCell.getAttribute("data-address");
     let cellObj = dataObj[selectedCellAdd];
@@ -247,9 +244,7 @@ for (let i = 1; i <= 100; i++) {
     for(let key in valObj){
       formula=formula.replace(key,valObj[key]);
     }
-
-    //20+10
-
+    
     let newValue=eval(formula);
 
     let dataOnUi=document.querySelector("[data-address=${cell}]");
