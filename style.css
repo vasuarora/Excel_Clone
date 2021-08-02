@@ -36,6 +36,39 @@ body {
 .menu-options-section {
   height: 8%;
   background-color: #2ecc71;
+  display: flex;
+}
+
+.material-icons{
+  font-size: 1.7rem!important;
+}
+
+.menu-options-section div{
+  height:100%;
+  border: 1px solid;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.font-style{
+  width: 23%;
+}
+
+.font-size{
+  width: 31%;
+}
+
+.font-size select{
+  font-size: 1.1rem;
+}
+
+.alignment-section{
+  width: 23%;
+}
+
+.color-section{
+  width: 23%;
 }
 
 .formula-section {
@@ -44,11 +77,11 @@ body {
 }
 
 .formula-section .selected-cell-div {
+  background-color: white;
   height: 100%;
   width: 20%;
   display: flex;
   justify-content: center;
-  background-color: white;
   border: 1px solid;
   align-items: center;
 }
@@ -64,7 +97,7 @@ body {
 .grid {
   height: 76%;
   overflow: auto;
-  position: relative;
+  position:relative;
 }
 
 .sheets-section {
@@ -76,17 +109,17 @@ body {
   height: 30px;
   width: 30px;
   background-color: gray;
-  position: fixed;
-  top: 20vh;
-  left: 0;
+  position:fixed;
+  top:20vh;
+  left:0;
 }
 
 .row-number-section {
+  z-index: -10;                      /* taaki neeche overlab hojaye */
   display: inline-block;
-  position: fixed;
-  top: calc(20vh + 30px);
-  left: 0;
-  z-index: -10;
+  position:fixed;
+  top:calc(20vh + 30px);
+  left:0;
 }
 
 .row-number {
@@ -102,13 +135,13 @@ body {
 }
 
 .column-tag-section {
+  z-index: -10;
   height: 30px;
   position: fixed;
   background: bisque;
   top: 20vh;
   left: 30px;
   display: flex;
-  z-index: -10;
 }
 
 .column-tag {
@@ -124,26 +157,25 @@ body {
   color: white;
 }
 
-.cell-section {
-  height: calc(76vh - 30px);
-  width: calc(100vw - 30px);
+.cell-section{
+  height:calc(76vh - 30px);
+  width:calc(100vw - 30px);
   position: absolute;
-  top: 30px;
-  left: 30px;
+  top:30px;
+  left:30px;
   overflow: auto;
 }
 
-
 .cell{
   width: 80px;
-  height: 30px;
-  border: 1px solid;
+  height:30px;
+  border:1px solid;
   flex-shrink: 0;
-  outline: none;
+  outline:none;
 }
 
 .cell-selected{
-  border: 2px solid rgb(60, 60, 218);
+  border: 2px solid blue;
 }
 
 .row{
