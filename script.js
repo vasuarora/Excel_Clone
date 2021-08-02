@@ -10,7 +10,7 @@ let formulaInput=document.querySelector(".formula-input-section");
 
 let lastCell;
 
-let dataObj={}
+let dataObj={};
 
 formulaInput.addEventListener("keydown", function (e) {
   if (e.key == "Enter") {
@@ -113,12 +113,7 @@ for(let i = 0;i<26;i++){
 for (let i = 1; i <= 100; i++) {
     let rowDiv = document.createElement("div");
     rowDiv.classList.add("row");
-                         //i = 1 [A1,B1..........Z1]
-                         //i = 2 []
-                         //.
-                         //.
-                         //i = 100 [A100.........z100]
-  
+                         
     for (let j = 0; j < 26; j++) {       //i = 100   j = 25  asciiCode = 65+25=90  alpha = z  cellAdd = Z100
       // A to Z
       let asciiCode = 65 + j;
@@ -132,7 +127,9 @@ for (let i = 1; i <= 100; i++) {
         formula:undefined,
         upstream:[],
         downstream:[], 
-        style:"",
+        bold:"",
+        italic:"",
+        underline:"",
         align: "left",
         color: "black",
         bgColor: "white",
@@ -201,10 +198,14 @@ for (let i = 1; i <= 100; i++) {
       if(dataObj[x].value){
         cell.innerText=dataObj[x].value;
 
+        cell.style.fontWeight=dataObj[x].bold;
+        cell.style.fontStyle=dataObj[x].italic;
+        cell.style.textDecoration=dataObj[x].underline;
         cell.style.textAlign=dataObj[x].align;
-        cell.style.color=dataObj[x].color;
-        cell.style.backgroundColor=dataObj[x].bgColor;
       }
+
+      cell.style.color=dataObj[x].color;
+      cell.style.backgroundColor=dataObj[x].bgColor;
     }
 }
 
@@ -236,20 +237,12 @@ for (let i = 1; i <= 100; i++) {
     // upstream me jobhi cell hai unke objects me jaunga whase unki value lekr aunga 
   // wo sari values mai ek object me key value pair form me store krunga where key being the cell address 
 
-
-  // {
-  //   A1:20,
-  //   B1:10
-  // }
-
     let valObj={};
 
     for(let i=0;i<upstream.length;i++){
       let cellValue=dataObj[upstream[i]].value;
       valObj[upstream[i]]=cellValue;
     }
-
-    //a1+b1
 
     for(let key in valObj){
       formula=formula.replace(key,valObj[key]);

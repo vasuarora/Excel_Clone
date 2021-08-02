@@ -3,9 +3,10 @@ let body=document.querySelector("body");
 
 let allColorOptions = document.querySelectorAll(".color-section span");
 
-let menuBarOptions=document.querySelectorAll(".menu-bar-section");
+let menuBarOptions=document.querySelectorAll(".menu-bar-section div");
 
 let fileOptions=menuBarOptions[0];
+let helpOption=menuBarOptions[1];
 
 let leftAlign = allAlignmentOptions[0];
 let centerAlign = allAlignmentOptions[1];
@@ -13,6 +14,9 @@ let rightAlign = allAlignmentOptions[2];
 
 let bgColorPicker = allColorOptions[0];
 let fontColorPicker = allColorOptions[1];
+
+let font=document.querySelectorAll("#font option");
+let size=document.querySelectorAll("#size option");
 
 leftAlign.addEventListener("click", function () {
   if (lastCell) {
@@ -48,7 +52,7 @@ bold.addEventListener("click",function(){
     if (lastCell) {
         lastCell.style.fontWeight = "bold";
         let address = lastCell.getAttribute("data-address");
-        dataObj[address].style = "bold";
+        dataObj[address].bold = "bold";
     }
 })
 
@@ -56,7 +60,7 @@ italic.addEventListener("click",function(){
     if (lastCell) {
         lastCell.style.fontStyle = "italic";
         let address = lastCell.getAttribute("data-address");
-        dataObj[address].style = "italic";
+        dataObj[address].italic = "italic";
     }
 })
 
@@ -64,7 +68,7 @@ underline.addEventListener("click",function(){
     if (lastCell) {
         lastCell.style.textDecoration = "underline";
         let address = lastCell.getAttribute("data-address");
-        dataObj[address].style = "underline";
+        dataObj[address].underline = "underline";
     }
 })
 
@@ -126,4 +130,30 @@ fileOptions.addEventListener("click",function(e){
         dropDown.classList.add("file-drop-down");
         fileOptions.append(dropDown);
     }
+})
+
+helpOption.addEventListener("click",function(e){
+  let isOpen=helpOption.getAttribute("data-open");
+
+  if(isOpen=="true"){
+    helpOption.setAttribute("data-open","false");
+    document.querySelector(".modal").remove();
+  }
+
+  else{
+    helpOption.setAttribute("data-open","true");
+    let box=document.createElement("div");
+    box.innerHTML=
+    `<p id="welcome">Welcome To Excel</p>
+    <p id="features">Features<p>
+    <ul>
+    <li>Formula Evaluation</li>
+    <li>Styling</li>
+    <li>Save File</li>
+    <li>Clear File</li>
+    </ul>`
+    box.classList.add("modal");
+    helpOption.append(box);
+  }
+
 })

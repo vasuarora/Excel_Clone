@@ -192,3 +192,43 @@ body {
   text-align: center;
   width: 3rem;
 }
+
+.modal{
+  background-color: #636e72;
+  top: 50%;
+  position: absolute!important;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 20;
+  height: 20rem;
+  width: 30rem;
+  border-radius: 20px;
+  box-shadow: 0 1px 8px 0 rgb(0 0 0 / 20%), 0 4px 20px 0 rgb(0 0 0 / 19%);
+}
+
+#welcome{
+  font-family: "Montserrat", sans-serif;
+  color: white;
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1;
+  text-align: center;
+}
+
+#features{
+  font-family: "Montserrat", sans-serif;
+  color: white;
+  font-size: 1.9rem;
+  font-weight: 600;
+  line-height: 0.5;
+  text-align: center;
+  color: #0be881;
+}
+
+li{
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  line-height: 1.8;
+  color: #ffd32a;
+}
