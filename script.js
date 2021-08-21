@@ -18,22 +18,22 @@ formulaInput.addEventListener("keydown", function (e) {
     let typedFormula = e.currentTarget.value;
     console.log(typedFormula);
 
-    if (!lastCell) return;
+    if (!lastCell) return;                  //incase of no cell selected
 
-    let selectedCellAdd = lastCell.getAttribute("data-address");
+    let selectedCellAdd = lastCell.getAttribute("data-address");              //selected cell address
     let cellObj = dataObj[selectedCellAdd];
 
-    cellObj.formula = typedFormula;
+    cellObj.formula = typedFormula;           //new formula
 
     let upstream = cellObj.upstream;
 
     for (let k = 0; k < upstream.length; k++) {
-      removeFromDownstream(upstream[k], selectedCellAdd);
+      removeFromDownstream(upstream[k], selectedCellAdd);                 //removing curr cell from children downstream
     }
 
     cellObj.upstream = [];
 
-    let formulaArr = typedFormula.split(" ");
+    let formulaArr = typedFormula.split(" ");            //to extract cells present in the formula
     let cellsInFormula = [];
 
     for (let i = 0; i < formulaArr.length; i++) {
@@ -49,10 +49,9 @@ formulaInput.addEventListener("keydown", function (e) {
     }
 
     for (let i = 0; i < cellsInFormula.length; i++) {
-      addToDownstream(cellsInFormula[i], selectedCellAdd);
+      addToDownstream(cellsInFormula[i], selectedCellAdd);     //adding curr cell in downstream of child cell
     }
-    cellObj.upstream = cellsInFormula; //[A1, B1]
-
+    cellObj.upstream = cellsInFormula;                            //creating new upstream      
     let valObj = {};
 
     for (let i = 0; i < cellsInFormula.length; i++) {
@@ -65,7 +64,7 @@ formulaInput.addEventListener("keydown", function (e) {
       typedFormula = typedFormula.replace(key, valObj[key]);
     }
 
-    let newValue = eval(typedFormula);
+    let newValue = eval(typedFormula);             //evaluating formula
 
     lastCell.innerText = newValue
 
@@ -74,7 +73,7 @@ formulaInput.addEventListener("keydown", function (e) {
     let downstream = cellObj.downstream;
 
     for (let i = 0; i < downstream.length; i++) {
-      updateCell(downstream[i]);
+      updateCell(downstream[i]);                       //updating the children downstream
     }
 
     dataObj[selectedCellAdd] = cellObj;
@@ -134,25 +133,28 @@ for (let i = 1; i <= 100; i++) {
   
       let cellDiv = document.createElement("div");
 
+      //downstream=all those cells in whose formula depends current cell.
+      //upstream=all those cells that appear in current cell formula.
+
       cellDiv.addEventListener("input",function(e){
         let currCellAddress=e.currentTarget.getAttribute("data-address");
 
         let currCellObj=dataObj[currCellAddress];
 
-        currCellObj.value=e.currentTarget.innerText;
-        currCellObj.formula=undefined;
+        currCellObj.value=e.currentTarget.innerText;      //update value
+        currCellObj.formula=undefined;                    //make formula undefined
 
         let currUpstream=currCellObj.upstream;
 
         for(let k=0;k<currUpstream.length;k++){
-          removeFromDownStream(currUpstream[k],currCellAddress);
+          removeFromDownStream(currUpstream[k],currCellAddress);          //removing curr cell from children downstream      
         }
 
-        currCellObj.upstream=[];
+        currCellObj.upstream=[];             //emptying the curr cell upstream
 
         let currDownStream=currCellObj.downstream;
 
-        for(let i=0;i<currDownStream.length;i++){
+        for(let i=0;i<currDownStream.length;i++){             //updating the cells in which curr cell is used as formula
           updateCell(currDownStream[i]);
         }
 
@@ -167,7 +169,7 @@ for (let i = 1; i <= 100; i++) {
   
       cellDiv.setAttribute("data-address", cellAddress);
 
-      cellDiv.addEventListener("click",function(e){
+      cellDiv.addEventListener("click",function(e){              //showing the curr cell selected
         if(lastCell){
           lastCell.classList.remove("cell-selected");
         }
@@ -187,7 +189,7 @@ for (let i = 1; i <= 100; i++) {
     cellSection.append(rowDiv)
   }
 
-  if(localStorage.getItem("sheet")){
+  if(localStorage.getItem("sheet")){                            //storing the cell objects in local storage
     dataObj=JSON.parse(localStorage.getItem("sheet"));
 
     for(let x in dataObj){
@@ -238,11 +240,11 @@ for (let i = 1; i <= 100; i++) {
 
     for(let i=0;i<upstream.length;i++){
       let cellValue=dataObj[upstream[i]].value;
-      valObj[upstream[i]]=cellValue;
+      valObj[upstream[i]]=cellValue;           //updating the cell value
     }
 
     for(let key in valObj){
-      formula=formula.replace(key,valObj[key]);
+      formula=formula.replace(key,valObj[key]);          //replacing the formula cells with cell value
     }
     
     let newValue=eval(formula);
@@ -253,7 +255,7 @@ for (let i = 1; i <= 100; i++) {
 
     let downstream=cellObj.downstream;
 
-    for(let i=0;i<downstream.length;i++){
+    for(let i=0;i<downstream.length;i++){                  //recursive call to other children which depend on the current child
       updateCell(downstream[i]);
     }
   }

@@ -120,11 +120,11 @@ fileOptions.addEventListener("click",function(e){
         let allOptions=dropDown.querySelectorAll("p");
 
         allOptions[0].addEventListener("click",function(e){
-            localStorage.setItem("sheet",JSON.stringify(dataObj));
+            localStorage.setItem("sheet",JSON.stringify(dataObj));             //saving in local storage
         })
 
         allOptions[1].addEventListener("click",function(e){
-            localStorage.setItem("sheet","");
+            localStorage.setItem("sheet","");                              //clearing the local storage
         })
 
         dropDown.classList.add("file-drop-down");
